@@ -2,6 +2,11 @@
 UITextField with customizable input mask. 
 
 ![Screenshot example](https://raw.githubusercontent.com/seaburg/EYMaskedTextField/master/Screenshots/Screenshot.png)
+Installation
+------------
+```
+pod 'EYMaskedTextField', '~> 0.0.1'
+```
 Usage
 -----
     #import <EYMaskedTextField/EYMaskedTextField.h>
