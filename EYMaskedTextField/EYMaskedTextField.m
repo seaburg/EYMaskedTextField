@@ -61,13 +61,15 @@ static NSRange EYNSStringSymbolsRangeToRange(NSString *string, NSRange symbolsRa
     return NSMakeRange(location, length);
 }
 
-@interface EYMaskedTextField () <UITextFieldDelegate>
+@interface EYMaskedTextField () <EYMaskedTextFieldDelegate>
 
-@property (weak, nonatomic) id<UITextFieldDelegate> originDelegate;
+@property (assign, nonatomic) id<EYMaskedTextFieldDelegate> originDelegate;
 
 @end
 
 @implementation EYMaskedTextField
+
+@dynamic delegate;
 
 - (void)commonInit
 {
@@ -132,7 +134,7 @@ static NSRange EYNSStringSymbolsRangeToRange(NSString *string, NSRange symbolsRa
     self.text = [self formattedStringFromString:unformattedText cursorPosition:NULL];
 }
 
-- (void)setDelegate:(id<UITextFieldDelegate>)delegate
+- (void)setDelegate:(id<EYMaskedTextFieldDelegate>)delegate
 {
     self.originDelegate = delegate;
 }
@@ -153,7 +155,14 @@ static NSRange EYNSStringSymbolsRangeToRange(NSString *string, NSRange symbolsRa
 
     NSRange filteredTextSymbolsRange = [self filteredRangeFromFormattedSymbolsRange:symbolsRange];
     NSString *filteredText = [self filteredStringFromString:textField.text cursorPosition:&targetCursorPosition];
-    filteredText = [filteredText stringByReplacingCharactersInRange:EYNSStringSymbolsRangeToRange(filteredText, filteredTextSymbolsRange) withString:string];
+    
+    NSRange filteredTextRange = EYNSStringSymbolsRangeToRange(filteredText, filteredTextSymbolsRange);
+    if ([self.originDelegate respondsToSelector:@selector(textField:shouldChangeUnformattedText:inRange:replacementString:)]) {
+        if (![self.originDelegate textField:self shouldChangeUnformattedText:filteredText inRange:filteredTextRange replacementString:string]) {
+            return NO;
+        }
+    }
+    filteredText = [filteredText stringByReplacingCharactersInRange:filteredTextRange withString:string];
 
     NSUInteger numberOfStringSymbols = EYNSStringNumberOfSymbols(string);
     targetCursorPosition = MIN(numberOfStringSymbols + targetCursorPosition, EYNSStringNumberOfSymbols(filteredText));
