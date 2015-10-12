@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b05-4n-oTc" customClass="EYMaskedTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="_ (___) ___ __ __" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b05-4n-oTc" customClass="EYMaskedTextField">
                                 <rect key="frame" x="16" y="20" width="288" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -39,7 +39,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="mask" value="⍓⍓😄⍓⍓😄⍓⍓😄⍓⍓😄⍓⍓😄⍓⍓"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ymC-kc-D6N" customClass="EYMaskedTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="_ (___) ___ __ __" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ymC-kc-D6N" customClass="EYMaskedTextField">
                                 <rect key="frame" x="16" y="96" width="288" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
