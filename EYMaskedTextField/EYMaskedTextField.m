@@ -293,6 +293,10 @@ static NSRange EYNSStringSymbolsRangeToRange(NSString *string, NSRange symbolsRa
 
 - (NSString *)filteredStringFromString:(NSString *)string cursorPosition:(NSInteger *)cursorPositionPtr
 {
+    if (!self.mask) {
+        return string;
+    }
+    
     __block NSInteger cursorPosition = cursorPositionPtr ? *cursorPositionPtr : 0;
     __block NSInteger originCursorPosition = cursorPosition;
     NSUInteger maskLength = EYNSStringNumberOfSymbols(self.mask);
@@ -327,8 +331,11 @@ static NSRange EYNSStringSymbolsRangeToRange(NSString *string, NSRange symbolsRa
 
 - (NSString *)formattedStringFromString:(NSString *)string cursorPosition:(NSInteger *)cursorPositionPtr
 {
+    if (!self.mask) {
+        return string;
+    }
+    
     __block NSInteger cursorPosition = cursorPositionPtr ? *cursorPositionPtr : 0;
-
     __block NSUInteger stringIndex = 0;
     __block NSUInteger maskSymbolIndex = 0;
 
@@ -360,6 +367,10 @@ static NSRange EYNSStringSymbolsRangeToRange(NSString *string, NSRange symbolsRa
 
 - (NSRange)filteredRangeFromFormattedSymbolsRange:(NSRange)formattedSymbolsRange
 {
+    if (!self.mask) {
+        return formattedSymbolsRange;
+    }
+    
     __block NSUInteger filteredRangeLocation = 0;
     __block NSUInteger filteredRangeLength = 0;
 
@@ -384,6 +395,10 @@ static NSRange EYNSStringSymbolsRangeToRange(NSString *string, NSRange symbolsRa
 
 - (NSRange)formattedRangeFromFilteredRange:(NSRange)filteredRange
 {
+    if (!self.mask) {
+        return filteredRange;
+    }
+    
     __block NSUInteger numberOfSkippedSymbols = filteredRange.location;
     __block NSUInteger numberOfTakenSymbols = filteredRange.length;
 
@@ -411,6 +426,10 @@ static NSRange EYNSStringSymbolsRangeToRange(NSString *string, NSRange symbolsRa
 
 - (NSRange)backspaceRangeWithSymbolsRange:(NSRange)symbolsRange
 {
+    if (!self.mask) {
+        return symbolsRange;
+    }
+    
     NSRange maskRange = EYNSStringSymbolsRangeToRange(self.mask, symbolsRange);
     NSString *removedSubmask = [self.mask substringWithRange:maskRange];
     if ([removedSubmask rangeOfString:EYMaskAnySymbol].length > 0) {
@@ -430,8 +449,11 @@ static NSRange EYNSStringSymbolsRangeToRange(NSString *string, NSRange symbolsRa
 
 - (NSInteger)cursorPositionWithSymbolsRange:(NSRange)symbolsRange
 {
+    if (!self.mask) {
+        return symbolsRange.location;
+    }
+    
     NSRange maskRange = EYNSStringSymbolsRangeToRange(self.mask, symbolsRange);
-
     NSRange anySymbolRange = [self.mask rangeOfString:EYMaskAnySymbol options:0 range:NSMakeRange(maskRange.location, self.mask.length - maskRange.location)];
 
     NSUInteger cursorPosition;
