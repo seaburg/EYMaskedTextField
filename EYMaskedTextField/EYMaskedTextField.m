@@ -432,11 +432,11 @@ static NSRange EYNSStringSymbolsRangeToRange(NSString *string, NSRange symbolsRa
 {
     NSRange maskRange = EYNSStringSymbolsRangeToRange(self.mask, symbolsRange);
 
-    NSRange anySumbolRange = [self.mask rangeOfString:EYMaskAnySymbol options:0 range:NSMakeRange(maskRange.location, self.mask.length - maskRange.location)];
+    NSRange anySymbolRange = [self.mask rangeOfString:EYMaskAnySymbol options:0 range:NSMakeRange(maskRange.location, self.mask.length - maskRange.location)];
 
     NSUInteger cursorPosition;
-    if (anySumbolRange.location != NSNotFound) {
-        cursorPosition = EYNSStringRangeToSymbolsRange(self.mask, anySumbolRange).location;
+    if (anySymbolRange.location != NSNotFound) {
+        cursorPosition = EYNSStringRangeToSymbolsRange(self.mask, anySymbolRange).location;
     } else {
         cursorPosition = symbolsRange.location;
     }
