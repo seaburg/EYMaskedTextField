@@ -5,7 +5,7 @@ UITextField with customizable input mask.
 Installation
 ------------
 ```
-pod 'EYMaskedTextField', '~> 0.1.0'
+pod 'EYMaskedTextField', '~> 0.1.1'
 ```
 Usage
 -----
