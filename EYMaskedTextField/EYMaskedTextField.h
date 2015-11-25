@@ -8,19 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol EYMaskedTextFieldDelegate <UITextFieldDelegate>
 
 @optional
-- (BOOL)textField:(UITextField *)textField shouldChangeUnformattedText:(NSString *)unformattedText inRange:(NSRange)range replacementString:(NSString *)string;
+- (BOOL)textField:(nonnull UITextField *)textField shouldChangeUnformattedText:(nullable NSString *)unformattedText inRange:(NSRange)range replacementString:(nullable NSString *)string;
 
 @end
 
 @interface EYMaskedTextField : UITextField
 
-@property (copy, nonatomic) IBInspectable NSString *mask;
+@property (copy, nonatomic, nullable) IBInspectable NSString *mask;
 
-@property (copy, nonatomic) IBInspectable NSString *unformattedText;
+@property (copy, nonatomic, nullable) IBInspectable NSString *unformattedText;
 
-@property (assign, nonatomic) id<EYMaskedTextFieldDelegate> delegate;
+@property (assign, nonatomic, nullable) id<EYMaskedTextFieldDelegate> delegate;
 
 @end
+
+NS_ASSUME_NONNULL_END
